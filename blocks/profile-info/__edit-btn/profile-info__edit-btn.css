@@ -1,0 +1,9 @@
+.profile-info__edit-btn {
+    width: 24px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    align-self: flex-start;
+    margin-top: 33px;
+    background-image: url(../../../images/Edit\ Button.svg);
+}
