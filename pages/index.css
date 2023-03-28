@@ -14,3 +14,9 @@
 @import url(../blocks/profile-info/__fullname/profile-info__fullname.css);
 @import url(../blocks/profile-info/__container/profile-info__container.css);
 @import url(../blocks/profile/__add-btn/profile__add-btn.css);
+@import url(../blocks/photo-cards/photo-cards.css);
+@import url(../blocks/photo-cards/__img/photo-cards__img.css);
+@import url(../blocks/photo-cards/__item/photo-cards__item.css);
+@import url(../blocks/photo-cards/__like/photo-cards__like.css);
+@import url(../blocks/photo-cards/__text-container/photo-cards__text-container.css);
+@import url(../blocks/photo-cards/__title/photo-cards__title.css);

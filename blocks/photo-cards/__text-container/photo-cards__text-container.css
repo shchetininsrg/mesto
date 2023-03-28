@@ -1,0 +1,4 @@
+.photo-cards__text-container {
+    display: flex;
+    justify-content: space-between;
+}
