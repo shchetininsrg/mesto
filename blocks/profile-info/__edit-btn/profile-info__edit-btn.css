@@ -8,3 +8,7 @@
     background-image: url(../../../images/Edit\ Button.svg);
     cursor: pointer;
 }
+
+.profile-info__edit-btn:hover {
+    opacity: 0.6;
+}

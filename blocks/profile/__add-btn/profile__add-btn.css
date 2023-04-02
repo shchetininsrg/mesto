@@ -7,3 +7,7 @@
     background-image: url(../../../images/Rectangle.svg);
     border: none;
 }
+
+.profile__add-btn:hover {
+    opacity: 0.6;
+}
