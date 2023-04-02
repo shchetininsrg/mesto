@@ -6,4 +6,5 @@
     align-self: flex-start;
     margin-top: 33px;
     background-image: url(../../../images/Edit\ Button.svg);
+    cursor: pointer;
 }
