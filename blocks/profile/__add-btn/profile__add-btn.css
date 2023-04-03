@@ -16,8 +16,8 @@
 
 @media screen and (max-width: 1279px) {
     .profile__add-btn { 
-        max-width: 100%;
-        margin-right: auto;
+        width: 282px;
+        margin-left: 0;
         background-image: url(../../../images/Add\ Button.svg);
         background-size: cover;
     }

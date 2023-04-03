@@ -15,3 +15,9 @@
 .popup__save-btn:hover {
     opacity: 0.6;
 }
+
+@media screen and (max-width: 1279px) {
+    .popup__save-btn {
+        margin-top: 45px;
+    }
+}
