@@ -1,5 +1,6 @@
 .photo-cards__like {
     width: 22px;
+    cursor: pointer;
 }
 
 .photo-cards__like:hover {

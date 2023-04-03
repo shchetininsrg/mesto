@@ -3,8 +3,8 @@ let popup = document.querySelector('.popup')
 let popupClose = document.querySelector('.popup__close-btn')
 let profileInfoFullname = document.querySelector('.profile-info__fullname')
 let profileInfoDescription = document.querySelector('.profile-info__description')
-let popupInputFullname = document.querySelector('.popup__input_fullname')
-let popupInputDescription = document.querySelector('.popup__input_description')
+let popupInputFullname = document.querySelector('#inputFullname')
+let popupInputDescription = document.querySelector('#inputJob')
 let formElement = document.querySelector('.popup__form')
 
 popupInputFullname.value = profileInfoFullname.innerHTML
@@ -22,6 +22,7 @@ function handleFormSubmit (evt) {
     evt.preventDefault(); 
     profileInfoFullname.textContent = popupInputFullname.value
     profileInfoDescription.textContent = popupInputDescription.value 
+    popup.classList.remove('popup_open')
 
 }
 
