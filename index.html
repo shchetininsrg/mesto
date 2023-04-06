@@ -19,53 +19,53 @@
                     <h1 class="profile-info__fullname">Жак-Ив Кусто</h1>
                     <p class="profile-info__description">Исследователь океана</p>
                 </div>
-                <button class="profile-info__edit-btn"></button>
+                <button type="button" class="profile-info__edit-btn"></button>
             </div>
-            <button class="profile__add-btn"></button>
+            <button type="button" class="profile__add-btn"></button>
         </section>
         <section class="photo-cards">
-            <div class="photo-cards__item">
+            <article class="photo-cards__item">
                 <img class="photo-cards__img" src="./images/photo-cards/kirill-pershin-1088404-unsplash.jpg" alt="Пейзаж Карачаевск">
                 <div class="photo-cards__text-container">
-                    <p class="photo-cards__title">Карачаевск</p>
-                    <img class="photo-cards__like" src="./images/Group.svg" alt="Кнопка like">
+                    <h2 class="photo-cards__title">Карачаевск</h2>
+                    <button type="button" class="photo-cards__like"></button>
                 </div>
-            </div>
-            <div class="photo-cards__item">
+            </article>
+            <article class="photo-cards__item">
                 <img class="photo-cards__img" src="./images/photo-cards/kirill-pershin-1404681-unsplash.jpg" alt="Пейзаж Гора Эльбрус">
                 <div class="photo-cards__text-container">
-                    <p class="photo-cards__title">Гора Эльбрус</p>
-                    <img class="photo-cards__like" src="./images/Group.svg" alt="Кнопка like">
+                    <h2 class="photo-cards__title">Гора Эльбрус</h2>
+                    <button type="button" class="photo-cards__like"></button>
                 </div>
-            </div>
-            <div class="photo-cards__item">
+            </article>
+            <article class="photo-cards__item">
                 <img class="photo-cards__img" src="./images/photo-cards/kirill-pershin-1556355-unsplash.jpg" alt="Пейзаж Домбай">
                 <div class="photo-cards__text-container">
-                    <p class="photo-cards__title">Домбай</p>
-                    <img class="photo-cards__like" src="./images/Group.svg" alt="Кнопка like">
+                    <h2 class="photo-cards__title">Домбай</h2>
+                    <button type="button" class="photo-cards__like"></button>
                 </div>
-            </div>
-            <div class="photo-cards__item">
+            </article>
+            <article class="photo-cards__item">
                 <img class="photo-cards__img" src="./images/photo-cards/kirill-pershin-1088404-unsplash.jpg" alt="Пейзаж Карачаевск">
                 <div class="photo-cards__text-container">
-                    <p class="photo-cards__title">Карачаевск</p>
-                    <img class="photo-cards__like" src="./images/Group.svg" alt="Кнопка like">
+                    <h2 class="photo-cards__title">Карачаевск</h2>
+                    <button type="button" class="photo-cards__like"></button>
                 </div>
-            </div>
-            <div class="photo-cards__item">
+            </article>
+            <article class="photo-cards__item">
                 <img class="photo-cards__img" src="./images/photo-cards/kirill-pershin-1404681-unsplash.jpg" alt="Пейзаж Домбай">
                 <div class="photo-cards__text-container">
-                    <p class="photo-cards__title">Домбай</p>
-                    <img class="photo-cards__like" src="./images/Group.svg" alt="Кнопка like">
+                    <h2 class="photo-cards__title">Домбай</h2>
+                    <button type="button" class="photo-cards__like"></button>
                 </div>
-            </div>
-            <div class="photo-cards__item">
+            </article>
+            <article class="photo-cards__item">
                 <img class="photo-cards__img" src="./images/photo-cards/kirill-pershin-1556355-unsplash.jpg" alt="Пейзаж Карачаево-Черкессия">
                 <div class="photo-cards__text-container">
-                    <p class="photo-cards__title">Карачаево-Черкессия</p>
-                    <img class="photo-cards__like" src="./images/Group.svg" alt="Кнопка like">
+                    <h2 class="photo-cards__title">Карачаево-Черкессия</h2>
+                    <button type="button" class="photo-cards__like"></button>
                 </div>
-            </div>
+            </article>
         </section>
     </main>
 
@@ -73,18 +73,17 @@
         <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
     
-    <section class="popup">
+    <div class="popup">
         <div class="popup__container">
-            <button class="popup__close-btn"></button>
-            <form class="popup__form" action="">
-                
-                <h2 class="popup__title">Редактировать профиль</h2>
-                <input class="popup__input" id="inputFullname" type="text">
-                <input class="popup__input" id="inputJob" type="text">
-                <button class="popup__save-btn">Сохранить</button>
+            <button type="button" class="popup__close-btn"></button>
+            <h2 class="popup__title">Редактировать профиль</h2>
+            <form name="edit-profile" class="popup__form" action="">
+                <input name="fullnameInput" class="popup__input" id="inputFullname" type="text">
+                <input name="jobInput" class="popup__input" id="inputJob" type="text">
+                <button type="submit" class="popup__save-btn">Сохранить</button>
             </form>
         </div>
-    </section>
+    </div>
     <script src="./scripts/index.js"></script>
 </body>
 </html>

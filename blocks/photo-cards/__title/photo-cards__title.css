@@ -1,4 +1,5 @@
 .photo-cards__title {
+    max-width: 246px;
     padding: 0;
     margin: 0;
     font-weight: 900;

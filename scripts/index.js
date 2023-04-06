@@ -7,14 +7,15 @@ let popupInputFullname = document.querySelector('#inputFullname')
 let popupInputDescription = document.querySelector('#inputJob')
 let formElement = document.querySelector('.popup__form')
 
-popupInputFullname.value = profileInfoFullname.innerHTML
-popupInputDescription.value = profileInfoDescription.innerHTML
 
-editProfile.onclick = function () {
+
+function openPopup () {
     popup.classList.add('popup_open')
+    popupInputFullname.value = profileInfoFullname.innerHTML
+    popupInputDescription.value = profileInfoDescription.innerHTML
 }
 
-popupClose.onclick = function () {
+function closePopup () {
     popup.classList.remove('popup_open')
 }
 
@@ -22,8 +23,9 @@ function handleFormSubmit (evt) {
     evt.preventDefault(); 
     profileInfoFullname.textContent = popupInputFullname.value
     profileInfoDescription.textContent = popupInputDescription.value 
-    popup.classList.remove('popup_open')
+    closePopup()
 
 }
-
+editProfile.addEventListener('click', openPopup);
+popupClose.addEventListener('click', closePopup);
 formElement.addEventListener('submit', handleFormSubmit); 
