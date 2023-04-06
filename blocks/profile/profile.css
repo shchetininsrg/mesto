@@ -3,11 +3,12 @@
     display: flex;
 }
 
-@media screen and (max-width: 1279px) {
+
+
+@media screen and (max-width: 1041px) {
     .profile {
+        width: 100%;
         flex-direction: column;
         align-items: center;
-        width: 100%;
     }
-
 }

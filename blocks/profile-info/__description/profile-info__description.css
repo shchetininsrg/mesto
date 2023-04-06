@@ -11,7 +11,9 @@
     max-width: 294px;
 }
 
-@media screen and (max-width: 1279px){
+
+
+@media screen and (max-width: 1041px){
     .profile-info__description {
         font-size: 14px;
         line-height: 17px;
