@@ -4,3 +4,12 @@
     object-fit: cover;
     border-radius: 100%;
 }
+
+
+@media screen and (max-width: 1041px) {
+    .profile__avatar { 
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}
