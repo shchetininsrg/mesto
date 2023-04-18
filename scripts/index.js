@@ -103,7 +103,7 @@ let createCard = (cardData) => {
   cardImg.src = cardData.link;
   cardImg.alt = cardData.name;
 
-  cardImg.addEventListener('click', (cardData) => {
+  cardImg.addEventListener('click', () => {
     openPopup(imgPopup)
 
     popupImg.src = cardImg.src
