@@ -125,8 +125,12 @@ let createCard = (cardData) => {
 }
 
 let renderCard = (cardElement) => {
- photoCards.prepend(cardElement)
+ photoCards.append(cardElement)
 }
+
+let renderNewCard = (cardElement) => {
+  photoCards.prepend(cardElement)
+ }
 
 initialCards.forEach((card) => {
   renderCard(createCard(card))
@@ -147,7 +151,7 @@ let handleAddCard = (evt) => {
     link: link
   }
 
-  renderCard(createCard(cardObj))
+  renderNewCard(createCard(cardObj))
   closePopup(addPopup)
 }
 
