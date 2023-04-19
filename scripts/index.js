@@ -1,25 +1,23 @@
-let editProfile = document.querySelector('.profile-info__edit-btn')
-let popupEdit = document.querySelector('#editPopup')
-let addPopup = document.querySelector('#addPopup')
-let imgPopup = document.querySelector('#imgPopup')
-let popupClose = document.querySelector('.popup__close-btn')
-let closeAdd = document.querySelector('#closeAdd')
-let closeImg = document.querySelector('#closeImg')
-let profileInfoFullname = document.querySelector('.profile-info__fullname')
-let profileInfoDescription = document.querySelector('.profile-info__description')
-let popupInputFullname = document.querySelector('#inputFullname')
-let popupInputDescription = document.querySelector('#inputJob')
-let formElement = document.querySelector('.popup__form')
-let profileAddBtn = document.querySelector('.profile__add-btn')
-let cardsTemplate = document.querySelector('#cards_template')
-let photoCards = document.querySelector('.photo-cards')
-let formAdd = document.querySelector('.popup__form_add')
-let inputName = document.querySelector('.popup__input_name')
-let inputLink = document.querySelector('.popup__input_link')
-let popupImg = document.querySelector('.popup__img')
-let popupText = document.querySelector('.popup__text')
-
-
+const editProfile = document.querySelector('.profile-info__edit-btn')
+const popupEdit = document.querySelector('#editPopup')
+const addPopup = document.querySelector('#addPopup')
+const imgPopup = document.querySelector('#imgPopup')
+const popupClose = popupEdit.querySelector('.popup__close-btn')
+const closeAdd = addPopup.querySelector('.popup__close-btn')
+const closeImg = imgPopup.querySelector('.popup__close-btn')
+const profileInfoFullname = document.querySelector('.profile-info__fullname')
+const profileInfoDescription = document.querySelector('.profile-info__description')
+const popupInputFullname = document.querySelector('#inputFullname')
+const popupInputDescription = document.querySelector('#inputJob')
+const formElement = popupEdit.querySelector('.popup__form')
+const profileAddBtn = document.querySelector('.profile__add-btn')
+const cardsTemplate = document.querySelector('#cards_template')
+const photoCards = document.querySelector('.photo-cards')
+const formAdd = document.querySelector('.popup__form_add')
+const inputName = document.querySelector('.popup__input_name')
+const inputLink = document.querySelector('.popup__input_link')
+const popupImg = document.querySelector('.popup__img')
+const popupText = document.querySelector('.popup__text')
 
 const initialCards = [
     {
@@ -48,23 +46,19 @@ const initialCards = [
     }
   ];
 
-
-
-
-
 //Попапы
-function openPopup(i) {
-    i.classList.add('popup_open')
+function openPopup(popupElement) {
+  popupElement.classList.add('popup_open')
 }
 
-function closePopup (i) {
-    i.classList.remove('popup_open')
+function closePopup (popupElement) {
+  popupElement.classList.remove('popup_open')
 }
 
 editProfile.addEventListener('click', function(){
     openPopup(popupEdit)
-    popupInputFullname.value = profileInfoFullname.innerHTML
-    popupInputDescription.value = profileInfoDescription.innerHTML
+    popupInputFullname.value = profileInfoFullname.textContent
+    popupInputDescription.value = profileInfoDescription.textContent
 });
 
 popupClose.addEventListener('click', function (){
@@ -83,23 +77,20 @@ closeImg.addEventListener('click', function (){
   closePopup(imgPopup)
 });
 
-
-function handleFormSubmit (evt) {
-    evt.preventDefault(); 
+function handleProfileFormSubmit (evt) {
+    evt.preventDefault();
     profileInfoFullname.textContent = popupInputFullname.value
-    profileInfoDescription.textContent = popupInputDescription.value 
+    profileInfoDescription.textContent = popupInputDescription.value
     closePopup(popupEdit)
-
 }
 
-
 // работа с карточками
-let createCard = (cardData) => {
-  let cardElement = cardsTemplate.content.querySelector('.photo-cards__item').cloneNode(true)
-  let cardName = cardElement.querySelector('.photo-cards__title')
-  let cardImg = cardElement.querySelector('.photo-cards__img')
+const createCard = (cardData) => {
+  const cardElement = cardsTemplate.content.querySelector('.photo-cards__item').cloneNode(true)
+  const cardName = cardElement.querySelector('.photo-cards__title')
+  const cardImg = cardElement.querySelector('.photo-cards__img')
 
-  cardName.innerHTML = cardData.name;
+  cardName.textContent = cardData.name;
   cardImg.src = cardData.link;
   cardImg.alt = cardData.name;
 
@@ -107,15 +98,15 @@ let createCard = (cardData) => {
     openPopup(imgPopup)
 
     popupImg.src = cardImg.src
-    popupText.innerHTML = cardName.textContent
+    popupText.textContent = cardName.textContent
 
   })
 
-  let cardLikes = cardElement.querySelector('.photo-cards__like')
+  const cardLikes = cardElement.querySelector('.photo-cards__like')
   const handleLike = () => {
     cardLikes.classList.toggle('photo-cards__like_active')
   }
-  let cardDelete = cardElement.querySelector('.photo-cards__bucket')
+  const cardDelete = cardElement.querySelector('.photo-cards__bucket')
   const handleDelete = () => {
     cardElement.remove()
   }
@@ -124,11 +115,11 @@ let createCard = (cardData) => {
   return cardElement
 }
 
-let renderCard = (cardElement) => {
+const renderCard = (cardElement) => {
  photoCards.append(cardElement)
 }
 
-let renderNewCard = (cardElement) => {
+const renderNewCard = (cardElement) => {
   photoCards.prepend(cardElement)
  }
 
@@ -136,17 +127,12 @@ initialCards.forEach((card) => {
   renderCard(createCard(card))
 })
 
-function addCards() {
-
-}
-
-
-let handleAddCard = (evt) => {
+const handleAddCard = (evt) => {
   evt.preventDefault()
-  let name = inputName.value
-  let link = inputLink.value
+  const name = inputName.value
+  const link = inputLink.value
 
-  let cardObj = {
+  const cardObj = {
     name: name,
     link: link
   }
@@ -155,7 +141,5 @@ let handleAddCard = (evt) => {
   closePopup(addPopup)
 }
 
-
-
 formAdd.addEventListener('submit', handleAddCard)
-formElement.addEventListener('submit', handleFormSubmit); 
+formElement.addEventListener('submit', handleProfileFormSubmit);

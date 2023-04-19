@@ -1,10 +1,5 @@
 .popup_open {
-    display: flex;
-    opacity: 0;
-    animation: fadeIn 0.2s both;
+    visibility: visible;
+    opacity: 1;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-      to { opacity: 1; }
-}
