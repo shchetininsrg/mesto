@@ -2,22 +2,22 @@ const editProfile = document.querySelector('.profile-info__edit-btn')
 const popupEdit = document.querySelector('#editPopup')
 const addPopup = document.querySelector('#addPopup')
 const imgPopup = document.querySelector('#imgPopup')
-const popupClose = popupEdit.querySelector('.popup__close-btn')
+const popupEditProfileBtn = popupEdit.querySelector('.popup__close-btn')
 const closeAdd = addPopup.querySelector('.popup__close-btn')
 const closeImg = imgPopup.querySelector('.popup__close-btn')
 const profileInfoFullname = document.querySelector('.profile-info__fullname')
 const profileInfoDescription = document.querySelector('.profile-info__description')
-const popupInputFullname = document.querySelector('#inputFullname')
-const popupInputDescription = document.querySelector('#inputJob')
-const formElement = popupEdit.querySelector('.popup__form')
+const popupInputFullname = popupEdit.querySelector('#inputFullname') //Как тут без уникального селектора искать инпут? в следующем спринте объясняют поиск по name. Я не знаю насколько корректно будет сейчас это использовать
+const popupInputDescription = popupEdit.querySelector('#inputJob')
+const formEditProfile = popupEdit.querySelector('.popup__form')
 const profileAddBtn = document.querySelector('.profile__add-btn')
 const cardsTemplate = document.querySelector('#cards_template')
 const photoCards = document.querySelector('.photo-cards')
-const formAdd = document.querySelector('.popup__form_add')
-const inputName = document.querySelector('.popup__input_name')
-const inputLink = document.querySelector('.popup__input_link')
-const popupImg = document.querySelector('.popup__img')
-const popupText = document.querySelector('.popup__text')
+const formAddCard = addPopup.querySelector('.popup__form')
+const popupInputCardName = addPopup.querySelector('.popup__input_name')
+const popupInputCardLink = addPopup.querySelector('.popup__input_link')
+const popupImgPicture = imgPopup.querySelector('.popup__img')
+const popupImgText = imgPopup.querySelector('.popup__text')
 
 const initialCards = [
     {
@@ -47,37 +47,37 @@ const initialCards = [
   ];
 
 //Попапы
-function openPopup(popupElement) {
+const openPopup = (popupElement) => {
   popupElement.classList.add('popup_open')
 }
 
-function closePopup (popupElement) {
+const closePopup = (popupElement) => {
   popupElement.classList.remove('popup_open')
 }
 
-editProfile.addEventListener('click', function(){
+editProfile.addEventListener('click', () => {
     openPopup(popupEdit)
     popupInputFullname.value = profileInfoFullname.textContent
     popupInputDescription.value = profileInfoDescription.textContent
 });
 
-popupClose.addEventListener('click', function (){
+popupEditProfileBtn.addEventListener('click', () => {
     closePopup(popupEdit)
 });
 
-profileAddBtn.addEventListener('click', function (){
+profileAddBtn.addEventListener('click', () => {
     openPopup(addPopup)
 });
 
-closeAdd.addEventListener('click', function (){
+closeAdd.addEventListener('click', () => {
     closePopup(addPopup)
 });
 
-closeImg.addEventListener('click', function (){
+closeImg.addEventListener('click', () => {
   closePopup(imgPopup)
 });
 
-function handleProfileFormSubmit (evt) {
+const handleProfileFormSubmit = (evt) => {
     evt.preventDefault();
     profileInfoFullname.textContent = popupInputFullname.value
     profileInfoDescription.textContent = popupInputDescription.value
@@ -97,8 +97,8 @@ const createCard = (cardData) => {
   cardImg.addEventListener('click', () => {
     openPopup(imgPopup)
 
-    popupImg.src = cardImg.src
-    popupText.textContent = cardName.textContent
+    popupImgPicture.src = cardImg.src
+    popupImgText.textContent = cardName.textContent
 
   })
 
@@ -110,8 +110,12 @@ const createCard = (cardData) => {
   const handleDelete = () => {
     cardElement.remove()
   }
-  cardLikes.addEventListener('click', handleLike)
-  cardDelete.addEventListener('click', handleDelete)
+  cardLikes.addEventListener('click', () => {
+    handleLike()
+  })
+  cardDelete.addEventListener('click', () => {
+    handleDelete()
+  })
   return cardElement
 }
 
@@ -129,8 +133,8 @@ initialCards.forEach((card) => {
 
 const handleAddCard = (evt) => {
   evt.preventDefault()
-  const name = inputName.value
-  const link = inputLink.value
+  const name = popupInputCardName.value
+  const link = popupInputCardLink.value
 
   const cardObj = {
     name: name,
@@ -141,5 +145,5 @@ const handleAddCard = (evt) => {
   closePopup(addPopup)
 }
 
-formAdd.addEventListener('submit', handleAddCard)
-formElement.addEventListener('submit', handleProfileFormSubmit);
+formAddCard.addEventListener('submit', handleAddCard)
+formEditProfile.addEventListener('submit', handleProfileFormSubmit);
