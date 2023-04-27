@@ -18,6 +18,7 @@ const popupInputCardName = addPopup.querySelector('.popup__input_name')
 const popupInputCardLink = addPopup.querySelector('.popup__input_link')
 const popupImgPicture = imgPopup.querySelector('.popup__img')
 const popupImgText = imgPopup.querySelector('.popup__text')
+const popup = document.querySelectorAll('.popup')
 
 const initialCards = [
     {
@@ -49,6 +50,7 @@ const initialCards = [
 //Попапы
 const openPopup = (popupElement) => {
   popupElement.classList.add('popup_open')
+  document.addEventListener('keydown', closeEscPopup)
 }
 
 const closePopup = (popupElement) => {
@@ -147,3 +149,19 @@ const handleAddCard = (evt) => {
 
 formAddCard.addEventListener('submit', handleAddCard)
 formEditProfile.addEventListener('submit', handleProfileFormSubmit);
+
+
+popup.forEach((item) => { 
+  item.addEventListener('click', (evt) => {
+    if (evt.currentTarget === evt.target) {
+      closePopup(item);
+    }
+  });
+});
+
+const closeEscPopup = (evt) => {
+  if (evt.key === 'Escape') {
+    const openPopup = document.querySelector('.popup_open');
+    closePopup(openPopup); 
+  }
+} 

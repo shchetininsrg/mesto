@@ -45,10 +45,16 @@
         <div class="popup__container">
             <button type="button" class="popup__close-btn"></button>
             <h2 class="popup__title">Редактировать профиль</h2>
-            <form name="edit-profile" class="popup__form" action="">
-                <input name="fullnameInput" class="popup__input" id="inputFullname" type="text">
-                <input name="jobInput" class="popup__input" id="inputJob" type="text">
-                <button type="submit" class="popup__save-btn">Сохранить</button>
+            <form name="edit-profile" class="popup__form" action="" novalidate>
+                <label class="popup__label">
+                    <input name="fullnameInput" class="popup__input popup__input_error" id="inputFullname" type="text" required minlength="2" maxlength="40">
+                    <span class="popup__error popup__error_hidden">тестasdasdasdasdasdasdasdasdasdasdasdasdasdas dasdasdasdasda </span>
+                </label>
+                <label class="popup__label">
+                    <input name="jobInput" class="popup__input popup__input_error" id="inputJob" type="text" required minlength="2" maxlength="200">
+                    <span class="popup__error popup__error_hidden">тест</span>
+                </label>
+                <button type="submit" class="popup__save-btn popup__save-btn_error">Сохранить</button>
             </form>
         </div>
     </div>
@@ -57,10 +63,16 @@
         <div class="popup__container">
             <button type="button" class="popup__close-btn"></button>
             <h2 class="popup__title">Новое место</h2>
-            <form name="addCard" class="popup__form" action="">
-                <input value="Название" name="nameMesto" class="popup__input popup__input_name" id="nameMesto" type="text">
-                <input value="Ссылка на картинку" name="linkImg" class="popup__input popup__input_link" id="linkImg" type="text">
-                <button type="submit" class="popup__save-btn">Создать</button>
+            <form name="addCard" class="popup__form" action="" novalidate>
+                <label class="popup__label">
+                    <input value="Название" name="nameMesto" class="popup__input popup__input_name popup__input_error" id="nameMesto" type="text" required minlength="2" maxlength="30">
+                    <span class="popup__error popup__error_hidden">тест</span>
+                </label>
+                <label class="popup__label">
+                    <input value="Ссылка на картинку" name="linkImg" class="popup__input popup__input_link popup__input_error" id="linkImg" type="url" required>
+                    <span class="popup__error popup__error_hidden">тест</span>
+                </label>
+                <button type="submit" class="popup__save-btn popup__save-btn_error">Создать</button>
             </form>
         </div>
     </div>
@@ -73,5 +85,6 @@
         </div>
     </div>
     <script src="./scripts/index.js" defer></script>
+    <script src="./scripts/validation.js" defer></script>
 </body>
 </html>
