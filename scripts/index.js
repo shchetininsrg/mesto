@@ -7,7 +7,7 @@ const closeAdd = addPopup.querySelector('.popup__close-btn')
 const closeImg = imgPopup.querySelector('.popup__close-btn')
 const profileInfoFullname = document.querySelector('.profile-info__fullname')
 const profileInfoDescription = document.querySelector('.profile-info__description')
-const popupInputFullname = popupEdit.querySelector('#inputFullname') //Как тут без уникального селектора искать инпут? в следующем спринте объясняют поиск по name. Я не знаю насколько корректно будет сейчас это использовать
+const popupInputFullname = popupEdit.querySelector('#inputFullname')
 const popupInputDescription = popupEdit.querySelector('#inputJob')
 const formEditProfile = popupEdit.querySelector('.popup__form')
 const profileAddBtn = document.querySelector('.profile__add-btn')
@@ -150,8 +150,7 @@ const handleAddCard = (evt) => {
 formAddCard.addEventListener('submit', handleAddCard)
 formEditProfile.addEventListener('submit', handleProfileFormSubmit);
 
-
-popup.forEach((item) => { 
+popup.forEach((item) => {
   item.addEventListener('click', (evt) => {
     if (evt.currentTarget === evt.target) {
       closePopup(item);
@@ -162,6 +161,6 @@ popup.forEach((item) => {
 const closeEscPopup = (evt) => {
   if (evt.key === 'Escape') {
     const openPopup = document.querySelector('.popup_open');
-    closePopup(openPopup); 
+    closePopup(openPopup);
   }
-} 
+}

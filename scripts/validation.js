@@ -6,37 +6,18 @@ const enableValidation = (config) => {
     form.addEventListener('submit', function (event) {
       event.preventDefault();
       form.reset()
-      verifBtn(config, form);
+      verifyBtn(config, form);
     });
-    verifBtn(config, form);
+    verifyBtn(config, form);
     const inputs = form.querySelectorAll(config.inputSelector);
     const inputsArr = Array.from(inputs);
     inputsArr.forEach(function (input) {
         input.addEventListener('input', () => {
-            verifInput(config, input, form);
-            verifBtn(config, form);
+            verifyInput(config, input, form);
+            verifyBtn(config, form);
         });
     });
   })
-}
-// валидация полей ввода
-const validInput = (config, input, errorMessage) => {
-  input.classList.remove(config.inputErrorClass);
-  errorMessage.textContent = '';
-}
-
-const invalidInput = (config, input, errorMessage) => {
-  input.classList.add(config.inputErrorClass);
-  errorMessage.textContent = input.validationMessage;
-}
-
-const verifInput = (config, input, form) => {
-  const errorMessage = form.querySelector(`#error-${input.id}`);
-  if (input.checkValidity()) {
-      validInput(config, input, errorMessage);
-  } else {
-      invalidInput(config, input, errorMessage);
-  }
 }
 // валидация кнопки формы
 const offBtnSave = (config, button) => {
@@ -49,12 +30,31 @@ const onBtnSave = (config, button) => {
   button.classList.remove(config.inactiveButtonClass);
 }
 
-const verifBtn = (config, form) => {
+const verifyBtn = (config, form) => {
   const submitButton = form.querySelector(config.submitButtonSelector);
   if (form.checkValidity()) {
       onBtnSave(config, submitButton);
   } else {
       offBtnSave(config, submitButton);
+  }
+}
+// валидация полей ввода
+const validInput = (config, input, errorMessage) => {
+  input.classList.remove(config.inputErrorClass);
+  errorMessage.textContent = '';
+}
+
+const invalidInput = (config, input, errorMessage) => {
+  input.classList.add(config.inputErrorClass);
+  errorMessage.textContent = input.validationMessage;
+}
+
+const verifyInput = (config, input, form) => {
+  const errorMessage = form.querySelector(`#error-${input.id}`);
+  if (input.checkValidity()) {
+      validInput(config, input, errorMessage);
+  } else {
+      invalidInput(config, input, errorMessage);
   }
 }
 
