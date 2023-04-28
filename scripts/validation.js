@@ -1,72 +1,61 @@
-
-function setInputValidState(config, input, errorElement) {
+// общая функция валидации
+const enableValidation = (config) => {
+  const forms = document.querySelectorAll(config.formSelector);
+  const formsArr = Array.from(forms)
+  formsArr.forEach((form) => {
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      form.reset()
+      verifBtn(config, form);
+    });
+    verifBtn(config, form);
+    const inputs = form.querySelectorAll(config.inputSelector);
+    const inputsArr = Array.from(inputs);
+    inputsArr.forEach(function (input) {
+        input.addEventListener('input', () => {
+            verifInput(config, input, form);
+            verifBtn(config, form);
+        });
+    });
+  })
+}
+// валидация полей ввода
+const validInput = (config, input, errorMessage) => {
   input.classList.remove(config.inputErrorClass);
-  errorElement.textContent = '';
+  errorMessage.textContent = '';
 }
 
-function setInputInvalidState(config, input, errorElement) {
+const invalidInput = (config, input, errorMessage) => {
   input.classList.add(config.inputErrorClass);
-  errorElement.textContent = input.validationMessage;
-
+  errorMessage.textContent = input.validationMessage;
 }
 
-function checkInputValidity(config, input, form) {
-  const errorElement = form.querySelector(`#error-${input.id}`);
-
+const verifInput = (config, input, form) => {
+  const errorMessage = form.querySelector(`#error-${input.id}`);
   if (input.checkValidity()) {
-      setInputValidState(config, input, errorElement);
+      validInput(config, input, errorMessage);
   } else {
-      setInputInvalidState(config, input, errorElement);
+      invalidInput(config, input, errorMessage);
   }
 }
-
-function disableButton(config, button) {
-  button.setAttribute('disabled', '');
+// валидация кнопки формы
+const offBtnSave = (config, button) => {
+  button.setAttribute('disabled', 'true');
   button.classList.add(config.inactiveButtonClass);
 }
 
-function enableButton(config, button) {
+const onBtnSave = (config, button) => {
   button.removeAttribute('disabled');
   button.classList.remove(config.inactiveButtonClass);
 }
 
-function toggleButtonValidity(config, form) {
+const verifBtn = (config, form) => {
   const submitButton = form.querySelector(config.submitButtonSelector);
-
   if (form.checkValidity()) {
-      enableButton(config, submitButton);
+      onBtnSave(config, submitButton);
   } else {
-      disableButton(config, submitButton);
+      offBtnSave(config, submitButton);
   }
-}
-
-
-function setSubmitListener(config, form) {
-  form.addEventListener('submit', function (event) {
-      event.preventDefault();
-
-      // тут какие-то действия при отправке
-      toggleButtonValidity(config, form);
-  });
-}
-
-function enableValidation(config) {
-  const forms = document.querySelectorAll(config.formSelector);
-  const formArr = Array.from(forms)
-  formArr.forEach((form) => {
-    setSubmitListener(config, form);
-    toggleButtonValidity(config, form);
-
-    const inputs = form.querySelectorAll(config.inputSelector);
-    const inputsArray = Array.from(inputs);
-
-    inputsArray.forEach(function (input) {
-        input.addEventListener('input', () => {
-            checkInputValidity(config, input, form);
-            toggleButtonValidity(config, form);
-        });
-    });
-  })
 }
 
 enableValidation({
