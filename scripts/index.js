@@ -1,3 +1,4 @@
+import Card from './Card.js'
 const editProfile = document.querySelector('.profile-info__edit-btn')
 const popupEdit = document.querySelector('#editPopup')
 const addPopup = document.querySelector('#addPopup')
