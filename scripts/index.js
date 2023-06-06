@@ -1,4 +1,4 @@
-import Card from './Card.js'
+import * as Card from './Card.js'
 const editProfile = document.querySelector('.profile-info__edit-btn')
 const popupEdit = document.querySelector('#editPopup')
 const addPopup = document.querySelector('#addPopup')
@@ -88,53 +88,31 @@ const handleProfileFormSubmit = (evt) => {
     closePopup(popupEdit)
 }
 
-// работа с карточками
-const createCard = (cardData) => {
-  const cardElement = cardsTemplate.content.querySelector('.photo-cards__item').cloneNode(true)
-  const cardName = cardElement.querySelector('.photo-cards__title')
-  const cardImg = cardElement.querySelector('.photo-cards__img')
-
-  cardName.textContent = cardData.name;
-  cardImg.src = cardData.link;
-  cardImg.alt = cardData.name;
-
-  cardImg.addEventListener('click', () => {
-    openPopup(imgPopup)
-
-    popupImgPicture.src = cardImg.src
-    popupImgText.textContent = cardName.textContent
-    popupImgPicture.alt = cardName.textContent
-
-  })
-
-  const cardLikes = cardElement.querySelector('.photo-cards__like')
-  const handleLike = () => {
-    cardLikes.classList.toggle('photo-cards__like_active')
-  }
-  const cardDelete = cardElement.querySelector('.photo-cards__bucket')
-  const handleDelete = () => {
-    cardElement.remove()
-  }
-  cardLikes.addEventListener('click', () => {
-    handleLike()
-  })
-  cardDelete.addEventListener('click', () => {
-    handleDelete()
-  })
-  return cardElement
-}
-
 const renderCard = (cardElement) => {
  photoCards.append(cardElement)
 }
+// работа с карточками
+const createCard = (array) => {
+  array.forEach((item) => {
+    const card = new Card.Card(item, '#cards_template')
+    const cardElement = card.generateCard()
+    renderCard(cardElement)
+  })
+}
+
+createCard(initialCards)
+
+export const openImgPopup = (name, img) => {
+    openPopup(imgPopup)
+
+    popupImgPicture.src = img
+    popupImgText.textContent = name
+    popupImgPicture.alt = name
+  }
 
 const renderNewCard = (cardElement) => {
   photoCards.prepend(cardElement)
  }
-
-initialCards.forEach((card) => {
-  renderCard(createCard(card))
-})
 
 const handleAddCard = (evt) => {
   evt.preventDefault()
@@ -145,8 +123,10 @@ const handleAddCard = (evt) => {
     name: name,
     link: link
   }
+  const card = new Card.Card(cardObj, '#cards_template')
+  const cardElement = card.generateCard()
 
-  renderNewCard(createCard(cardObj))
+  renderNewCard(cardElement)
   closePopup(addPopup)
 }
 
