@@ -1,4 +1,5 @@
 import * as Card from './Card.js'
+import * as Form from './FormValidator.js'
 const editProfile = document.querySelector('.profile-info__edit-btn')
 const popupEdit = document.querySelector('#editPopup')
 const addPopup = document.querySelector('#addPopup')
@@ -63,6 +64,7 @@ editProfile.addEventListener('click', () => {
     openPopup(popupEdit)
     popupInputFullname.value = profileInfoFullname.textContent
     popupInputDescription.value = profileInfoDescription.textContent
+    enableValidation(popupEdit)
 });
 
 popupEditProfileBtn.addEventListener('click', () => {
@@ -71,6 +73,7 @@ popupEditProfileBtn.addEventListener('click', () => {
 
 profileAddBtn.addEventListener('click', () => {
     openPopup(addPopup)
+    enableValidation(addPopup)
 });
 
 closeAdd.addEventListener('click', () => {
@@ -147,3 +150,17 @@ const closeEscPopup = (evt) => {
     closePopup(openPopup);
   }
 }
+
+const enableValidation = (popup) => {
+  const formValidator = new Form.FormValidator(config, popup);
+  formValidator.enableValidation();
+};
+
+const config = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__save-btn',
+    inactiveButtonClass: 'popup__save-btn_error',
+    inputErrorClass: 'popup__input_error',
+    errorClass: 'popup__error'
+  };
