@@ -1,5 +1,5 @@
 import * as Card from './Card.js'
-import * as Form from './FormValidator.js'
+import * as FormValidator from './FormValidator.js'
 const editProfile = document.querySelector('.profile-info__edit-btn')
 const popupEdit = document.querySelector('#editPopup')
 const addPopup = document.querySelector('#addPopup')
@@ -152,7 +152,7 @@ const closeEscPopup = (evt) => {
 }
 
 const enableValidation = (popup) => {
-  const formValidator = new Form.FormValidator(config, popup);
+  const formValidator = new FormValidator.FormValidator(config, popup);
   formValidator.enableValidation();
 };
 
