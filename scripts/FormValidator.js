@@ -11,15 +11,15 @@ export class FormValidator {
   }
   _offBtnSave(buttonElement) {
     buttonElement.classList.add(this._inactiveButtonClass);
-    buttonElement.setAttribute('disabled', 'disabled');
+    buttonElement.setAttribute('disabled', 'true');
   }
   _onBtnSave(buttonElement) {
     buttonElement.classList.remove(this._inactiveButtonClass);
-    buttonElement.removeAttribute('disabled', 'disabled');
+    buttonElement.removeAttribute('disabled');
   }
 
-  _verifyBtn(inputList, buttonElement) {
-    if(this._invalidInput(inputList)) {
+  _verifyBtn(inputArray, buttonElement) {
+    if(this._invalidInput(inputArray)) {
       this._offBtnSave(buttonElement);
     }
     else {
@@ -50,20 +50,20 @@ export class FormValidator {
   }
 
   _setEventListener() {
-    const inputList = Array.from(this._formItem.querySelectorAll(this._inputSelector));
+    const inputArray = Array.from(this._formItem.querySelectorAll(this._inputSelector));
     const buttonElement = this._formItem.querySelector(this._submitButtonSelector);
-    this._verifyBtn(inputList, buttonElement);
+    this._verifyBtn(inputArray, buttonElement);
 
-    inputList.forEach((input) => {
+    inputArray.forEach((input) => {
       input.addEventListener('input', () => {
         this._verifyInput(input);
-        this._verifyBtn(inputList, buttonElement);
+        this._verifyBtn(inputArray, buttonElement);
       })
     })
   }
 
-  _invalidInput(inputList) {
-    return inputList.some((input) => {
+  _invalidInput(inputArray) {
+    return inputArray.some((input) => {
       return !input.validity.valid;
     })
   }
