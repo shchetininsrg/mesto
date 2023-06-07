@@ -64,7 +64,6 @@ editProfile.addEventListener('click', () => {
     openPopup(popupEdit)
     popupInputFullname.value = profileInfoFullname.textContent
     popupInputDescription.value = profileInfoDescription.textContent
-    enableValidation(popupEdit)
 });
 
 popupEditProfileBtn.addEventListener('click', () => {
@@ -73,7 +72,6 @@ popupEditProfileBtn.addEventListener('click', () => {
 
 profileAddBtn.addEventListener('click', () => {
     openPopup(addPopup)
-    enableValidation(addPopup)
 });
 
 closeAdd.addEventListener('click', () => {
@@ -89,6 +87,7 @@ const handleProfileFormSubmit = (evt) => {
     profileInfoFullname.textContent = popupInputFullname.value
     profileInfoDescription.textContent = popupInputDescription.value
     closePopup(popupEdit)
+    evt.target.reset()
 }
 
 const renderCard = (cardElement) => {
@@ -131,6 +130,7 @@ const handleAddCard = (evt) => {
 
   renderNewCard(cardElement)
   closePopup(addPopup)
+  evt.target.reset()
 }
 
 formAddCard.addEventListener('submit', handleAddCard)
@@ -151,11 +151,6 @@ const closeEscPopup = (evt) => {
   }
 }
 
-const enableValidation = (popup) => {
-  const formValidator = new FormValidator.FormValidator(config, popup);
-  formValidator.enableValidation();
-};
-
 const config = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
@@ -164,3 +159,8 @@ const config = {
     inputErrorClass: 'popup__input_error',
     errorClass: 'popup__error'
   };
+
+const addCardFormValidator = new FormValidator.FormValidator(config, addPopup);
+const editProfileFormValidator = new FormValidator.FormValidator(config, popupEdit);
+addCardFormValidator.enableValidation()
+editProfileFormValidator.enableValidation()

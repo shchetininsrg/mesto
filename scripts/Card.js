@@ -12,7 +12,7 @@ export class Card {
   }
 
   _handleLike(){
-    this._item.querySelector('.photo-cards__like').classList.toggle('photo-cards__like_active')
+    this._likeButton.classList.toggle('photo-cards__like_active')
   }
 
   _handleDelete(){
@@ -39,9 +39,9 @@ export class Card {
     this._item.querySelector('.photo-cards__title').textContent = this._name
     this._item.querySelector('.photo-cards__img').alt = this._name
     this._item.querySelector('.photo-cards__img').src = this._link
+    this._likeButton = this._item.querySelector('.photo-cards__like');
 
     this._setEventListeners()
-    console.log(this._name)
     return this._item
   }
 

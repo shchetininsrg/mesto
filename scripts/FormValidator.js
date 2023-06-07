@@ -69,13 +69,7 @@ export class FormValidator {
   }
 
   enableValidation() {
-    const formList = Array.from(document.querySelectorAll(this._formSelector));
-    formList.forEach((formElement) => {
-      formElement.addEventListener('submit', function (evt) {
-        evt.preventDefault();
-      });
-        this._setEventListener();
-    });
+    this._setEventListener();
   }
 }
 
