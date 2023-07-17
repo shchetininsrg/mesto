@@ -1,6 +1,5 @@
-export class FormValidator {
+export default class FormValidator {
   constructor(config, formElement) {
-    this._formSelector = config.formSelector;
     this._inputSelector = config.inputSelector;
     this._submitButtonSelector = config.submitButtonSelector;
     this._inactiveButtonClass = config.inactiveButtonClass;
@@ -9,21 +8,15 @@ export class FormValidator {
     this._formItem = formElement;
 
   }
-  _offBtnSave(buttonElement) {
-    buttonElement.classList.add(this._inactiveButtonClass);
-    buttonElement.setAttribute('disabled', 'true');
-  }
-  _onBtnSave(buttonElement) {
-    buttonElement.classList.remove(this._inactiveButtonClass);
-    buttonElement.removeAttribute('disabled');
-  }
 
-  _verifyBtn(inputArray, buttonElement) {
+  verifyBtn(inputArray, buttonElement) {
     if(this._invalidInput(inputArray)) {
-      this._offBtnSave(buttonElement);
+      buttonElement.classList.add(this._inactiveButtonClass);
+      buttonElement.setAttribute('disabled', 'true');
     }
     else {
-      this._onBtnSave(buttonElement);
+      buttonElement.classList.remove(this._inactiveButtonClass);
+      buttonElement.removeAttribute('disabled');
     }
   };
 
@@ -52,12 +45,12 @@ export class FormValidator {
   _setEventListener() {
     const inputArray = Array.from(this._formItem.querySelectorAll(this._inputSelector));
     const buttonElement = this._formItem.querySelector(this._submitButtonSelector);
-    this._verifyBtn(inputArray, buttonElement);
+    this.verifyBtn(inputArray, buttonElement);
 
     inputArray.forEach((input) => {
       input.addEventListener('input', () => {
         this._verifyInput(input);
-        this._verifyBtn(inputArray, buttonElement);
+        this.verifyBtn(inputArray, buttonElement);
       })
     })
   }

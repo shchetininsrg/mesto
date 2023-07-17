@@ -1,5 +1,5 @@
-import * as Card from './Card.js'
-import * as FormValidator from './FormValidator.js'
+import Card from './Card.js'
+import FormValidator from './FormValidator.js'
 const editProfile = document.querySelector('.profile-info__edit-btn')
 const popupEdit = document.querySelector('#editPopup')
 const addPopup = document.querySelector('#addPopup')
@@ -13,7 +13,6 @@ const popupInputFullname = popupEdit.querySelector('#inputFullname')
 const popupInputDescription = popupEdit.querySelector('#inputJob')
 const formEditProfile = popupEdit.querySelector('.popup__form')
 const profileAddBtn = document.querySelector('.profile__add-btn')
-const cardsTemplate = document.querySelector('#cards_template')
 const photoCards = document.querySelector('.photo-cards')
 const formAddCard = addPopup.querySelector('.popup__form')
 const popupInputCardName = addPopup.querySelector('.popup__input_name')
@@ -21,6 +20,8 @@ const popupInputCardLink = addPopup.querySelector('.popup__input_link')
 const popupImgPicture = imgPopup.querySelector('.popup__img')
 const popupImgText = imgPopup.querySelector('.popup__text')
 const popups = document.querySelectorAll('.popup')
+const inputArray = Array.from(formEditProfile.querySelectorAll('.popup__input'));
+const buttonElement = document.querySelector('.popup__save-btn')
 
 const initialCards = [
     {
@@ -64,6 +65,7 @@ editProfile.addEventListener('click', () => {
     openPopup(popupEdit)
     popupInputFullname.value = profileInfoFullname.textContent
     popupInputDescription.value = profileInfoDescription.textContent
+    editProfileFormValidator.enableValidation()
 });
 
 popupEditProfileBtn.addEventListener('click', () => {
@@ -72,6 +74,7 @@ popupEditProfileBtn.addEventListener('click', () => {
 
 profileAddBtn.addEventListener('click', () => {
     openPopup(addPopup)
+    addCardFormValidator.enableValidation()
 });
 
 closeAdd.addEventListener('click', () => {
@@ -96,7 +99,7 @@ const renderCard = (cardElement) => {
 // работа с карточками
 const createCard = (array) => {
   array.forEach((item) => {
-    const card = new Card.Card(item, '#cards_template')
+    const card = new Card(item, '#cards_template')
     const cardElement = card.generateCard()
     renderCard(cardElement)
   })
@@ -125,7 +128,7 @@ const handleAddCard = (evt) => {
     name: name,
     link: link
   }
-  const card = new Card.Card(cardObj, '#cards_template')
+  const card = new Card(cardObj, '#cards_template')
   const cardElement = card.generateCard()
 
   renderNewCard(cardElement)
@@ -160,7 +163,9 @@ const config = {
     errorClass: 'popup__error'
   };
 
-const addCardFormValidator = new FormValidator.FormValidator(config, addPopup);
-const editProfileFormValidator = new FormValidator.FormValidator(config, popupEdit);
-addCardFormValidator.enableValidation()
-editProfileFormValidator.enableValidation()
+const addCardFormValidator = new FormValidator(config, addPopup);
+const editProfileFormValidator = new FormValidator(config, popupEdit);
+
+
+
+
