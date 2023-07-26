@@ -21,7 +21,7 @@ const popupImgPicture = imgPopup.querySelector('.popup__img')
 const popupImgText = imgPopup.querySelector('.popup__text')
 const popups = document.querySelectorAll('.popup')
 const inputArray = Array.from(formEditProfile.querySelectorAll('.popup__input'));
-const buttonElement = document.querySelector('.popup__save-btn')
+const buttonElement = addPopup.querySelector('.popup__save-btn')
 
 const initialCards = [
     {
@@ -65,7 +65,6 @@ editProfile.addEventListener('click', () => {
     openPopup(popupEdit)
     popupInputFullname.value = profileInfoFullname.textContent
     popupInputDescription.value = profileInfoDescription.textContent
-    editProfileFormValidator.enableValidation()
 });
 
 popupEditProfileBtn.addEventListener('click', () => {
@@ -74,7 +73,7 @@ popupEditProfileBtn.addEventListener('click', () => {
 
 profileAddBtn.addEventListener('click', () => {
     openPopup(addPopup)
-    addCardFormValidator.enableValidation()
+    addCardFormValidator.verifyBtn(inputArray, buttonElement)
 });
 
 closeAdd.addEventListener('click', () => {
@@ -93,19 +92,17 @@ const handleProfileFormSubmit = (evt) => {
     evt.target.reset()
 }
 
-const renderCard = (cardElement) => {
- photoCards.append(cardElement)
+const renderCard = (item) => {
+ photoCards.append(createCard(item))
 }
 // работа с карточками
-const createCard = (array) => {
-  array.forEach((item) => {
-    const card = new Card(item, '#cards_template')
+const createCard = (item) => {
+  const card = new Card(item, '#cards_template')
     const cardElement = card.generateCard()
-    renderCard(cardElement)
-  })
+    return cardElement
 }
 
-createCard(initialCards)
+initialCards.forEach(item => renderCard(item));
 
 export const openImgPopup = (name, img) => {
     openPopup(imgPopup)
@@ -114,10 +111,6 @@ export const openImgPopup = (name, img) => {
     popupImgText.textContent = name
     popupImgPicture.alt = name
   }
-
-const renderNewCard = (cardElement) => {
-  photoCards.prepend(cardElement)
- }
 
 const handleAddCard = (evt) => {
   evt.preventDefault()
@@ -128,10 +121,7 @@ const handleAddCard = (evt) => {
     name: name,
     link: link
   }
-  const card = new Card(cardObj, '#cards_template')
-  const cardElement = card.generateCard()
-
-  renderNewCard(cardElement)
+  photoCards.prepend(createCard(cardObj))
   closePopup(addPopup)
   evt.target.reset()
 }
@@ -165,6 +155,8 @@ const config = {
 
 const addCardFormValidator = new FormValidator(config, addPopup);
 const editProfileFormValidator = new FormValidator(config, popupEdit);
+addCardFormValidator.enableValidation()
+editProfileFormValidator.enableValidation()
 
 
 
