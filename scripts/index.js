@@ -1,5 +1,6 @@
 import Card from './Card.js'
 import FormValidator from './FormValidator.js'
+import Section from './Section.js'
 const editProfile = document.querySelector('.profile-info__edit-btn')
 const popupEdit = document.querySelector('#editPopup')
 const addPopup = document.querySelector('#addPopup')
@@ -92,17 +93,27 @@ const handleProfileFormSubmit = (evt) => {
     evt.target.reset()
 }
 
-const renderCard = (item) => {
- photoCards.append(createCard(item))
-}
-// работа с карточками
-const createCard = (item) => {
-  const card = new Card(item, '#cards_template')
+
+const section = new Section(
+  {
+   item: initialCards,
+   renderer: (item) => {
+    const card = new Card(item, '#cards_template')
     const cardElement = card.generateCard()
     return cardElement
-}
+   },
+  },
+".photo-cards"
+);
 
-initialCards.forEach(item => renderCard(item));
+section.renderer();
+
+const createCard = (item) => { 
+  const card = new Card(item, '#cards_template') 
+    const cardElement = card.generateCard() 
+    return cardElement 
+} 
+
 
 export const openImgPopup = (name, img) => {
     openPopup(imgPopup)
