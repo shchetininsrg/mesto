@@ -22,10 +22,8 @@
     .profile__add-btn { 
         width: 282px;
         margin-left: 0;
-        background-image: url(../../../images/Add\ Button.svg);
+        background-image: url(../../../images/Add-Button.svg);
         background-size: cover;
     }
 
 }
-
- /* у меня кнопка не пропадает, даже не представляю с чем это связано https://disk.yandex.ru/i/VUFYI4GSU_CbAQ */

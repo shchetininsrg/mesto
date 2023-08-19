@@ -1,10 +1,10 @@
-import { openImgPopup } from './index.js'
 
 export default class Card {
-  constructor(cardData, templateElement) {
+  constructor(cardData, templateElement, handleCardClick) {
     this._name = cardData.name
     this._link = cardData.link
     this._templateElement = templateElement
+    this._handleCardClick = handleCardClick
   }
   _getTemplate(){
     const cardTemplate = document.querySelector(this._templateElement).content.querySelector('.photo-cards__item').cloneNode(true);
@@ -29,7 +29,7 @@ export default class Card {
     })
 
     this._item.querySelector('.photo-cards__img').addEventListener('click', () => {
-      openImgPopup(this._name, this._link)
+      this._handleCardClick(this._name, this._link)
     })
   }
 

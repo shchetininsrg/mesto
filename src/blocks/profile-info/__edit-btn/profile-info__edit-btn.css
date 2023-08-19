@@ -5,7 +5,7 @@
     border: none;
     align-self: flex-start;
     margin-top: 34px;
-    background-image: url(../../../images/Edit\ Button.svg);
+    background-image: url(../../../images/Edit-Button.svg);
     cursor: pointer;
     transition: opacity 0.3s ease-in;
 }
