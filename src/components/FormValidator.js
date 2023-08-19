@@ -6,17 +6,18 @@ export default class FormValidator {
     this._inputErrorClass = config.inputErrorClass;
     this._errorClass = config.errorClass;
     this._formItem = formElement;
-
+    this._buttonElement = this._formItem.querySelector(this._submitButtonSelector)
+    this._inputArray = Array.from(this._formItem.querySelectorAll(this._inputSelector));
   }
 
-  verifyBtn(inputArray, buttonElement) {
-    if(this._invalidInput(inputArray)) {
-      buttonElement.classList.add(this._inactiveButtonClass);
-      buttonElement.setAttribute('disabled', 'true');
+  verifyBtn() {
+    if(this._invalidInput(this._inputArray)) {
+      this._buttonElement.classList.add(this._inactiveButtonClass);
+      this._buttonElement.setAttribute('disabled', 'true');
     }
     else {
-      buttonElement.classList.remove(this._inactiveButtonClass);
-      buttonElement.removeAttribute('disabled');
+      this._buttonElement.classList.remove(this._inactiveButtonClass);
+      this._buttonElement.removeAttribute('disabled');
     }
   };
 
@@ -43,20 +44,18 @@ export default class FormValidator {
   }
 
   _setEventListener() {
-    const inputArray = Array.from(this._formItem.querySelectorAll(this._inputSelector));
-    const buttonElement = this._formItem.querySelector(this._submitButtonSelector);
-    this.verifyBtn(inputArray, buttonElement);
+    this.verifyBtn();
 
-    inputArray.forEach((input) => {
+    this._inputArray.forEach((input) => {
       input.addEventListener('input', () => {
         this._verifyInput(input);
-        this.verifyBtn(inputArray, buttonElement);
+        this.verifyBtn();
       })
     })
   }
 
-  _invalidInput(inputArray) {
-    return inputArray.some((input) => {
+  _invalidInput() {
+    return this._inputArray.some((input) => {
       return !input.validity.valid;
     })
   }

@@ -1,22 +1,16 @@
-import Card from '../scripts/Card'
-import FormValidator from '../scripts/FormValidator'
-import Section from '../scripts/Section'
-import PopupWithImage from '../scripts/PopupWithImage'
-import PopupWithForm from '../scripts/PopupWithForm'
-import UserInfo from '../scripts/UserInfo'
+import Card from '../components/Card'
+import FormValidator from '../components/FormValidator'
+import Section from '../components/Section'
+import PopupWithImage from '../components/PopupWithImage'
+import PopupWithForm from '../components/PopupWithForm'
+import UserInfo from '../components/UserInfo'
 import './index.css';
 const editProfile = document.querySelector('.profile-info__edit-btn')
 const popupEdit = document.querySelector('#editPopup')
 const addPopup = document.querySelector('#addPopup')
 const popupInputFullname = popupEdit.querySelector('#inputFullname')
 const popupInputDescription = popupEdit.querySelector('#inputJob')
-const formEditProfile = popupEdit.querySelector('.popup__form')
-const formAddCard = addPopup.querySelector('.popup__form')
 const profileAddBtn = document.querySelector('.profile__add-btn')
-const inputArrayEdit = Array.from(formEditProfile.querySelectorAll('.popup__input'));
-const inputArrayAdd = Array.from(formAddCard.querySelectorAll('.popup__input'));
-const buttonElementAdd = addPopup.querySelector('.popup__save-btn')
-const buttonElementEdit = popupEdit.querySelector('.popup__save-btn')
 const initialCards = [
     {
       name: 'Архыз',
@@ -75,12 +69,12 @@ editProfile.addEventListener('click', () => {
     const {name, job} = userInfo.getUserInfo()
     popupInputFullname.value = name
     popupInputDescription.value = job
-    editProfileFormValidator.verifyBtn(inputArrayEdit, buttonElementEdit)
+    editProfileFormValidator.verifyBtn()
 });
 
 profileAddBtn.addEventListener('click', () => {
     popupAddCard.open()
-    addCardFormValidator.verifyBtn(inputArrayAdd, buttonElementAdd)
+    addCardFormValidator.verifyBtn()
 });
 
 const handleCardClick = (name, link) => {
