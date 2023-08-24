@@ -5,38 +5,13 @@ import PopupWithImage from '../components/PopupWithImage'
 import PopupWithForm from '../components/PopupWithForm'
 import UserInfo from '../components/UserInfo'
 import './index.css';
-const editProfile = document.querySelector('.profile-info__edit-btn')
-const popupEdit = document.querySelector('#editPopup')
-const addPopup = document.querySelector('#addPopup')
-const popupInputFullname = popupEdit.querySelector('#inputFullname')
-const popupInputDescription = popupEdit.querySelector('#inputJob')
-const profileAddBtn = document.querySelector('.profile__add-btn')
-const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-  ];
+import {editProfile, popupEdit, addPopup, popupInputFullname, popupInputDescription, profileAddBtn, initialCards} from '../utils/сonstants'
+import {configApi} from '../utils/configApi'
+import Api from '../components/Api'
+
+const api = new Api(configApi)
+
+
 const createCard = (item, selector, func) => { 
   const card = new Card(item, selector, func) 
     const cardElement = card.generateCard()
@@ -45,15 +20,11 @@ const createCard = (item, selector, func) => {
   
 
 const section = new Section(
-  {
-    item: initialCards,
-    renderer: (item) => {
+    (item) => {
       const card = createCard(item, '#cards_template', handleCardClick)
       section.addItemDefault(card)
      },
-    },
-  ".photo-cards"
-);
+  ".photo-cards");
 
 const handleProfileFormSubmit = (data) => {
   userInfo.setUserInfo(data)
@@ -81,7 +52,7 @@ const handleCardClick = (name, link) => {
   popupWithImage.open(name, link)
 }
 
-section.renderer();
+
 
 const config = {
     formSelector: '.popup__form',
@@ -106,7 +77,15 @@ popupEditProfile.setEventListener()
 const popupAddCard = new PopupWithForm('#addPopup', handleAddCard)
 popupAddCard.setEventListener()
 
-const userInfo = new UserInfo({selectorName:'.profile-info__fullname', selectorJob:'.profile-info__description'})
+const userInfo = new UserInfo({selectorName:'.profile-info__fullname', selectorJob:'.profile-info__description', selectorAvatar: '.profile__avatar'})
+
+Promise.all([api.getUserInfo(), api.getDefaultCard()])
+.then(([dataUser, dataCard]) => {
+  dataCard.forEach(item => item.myid = dataUser._id)
+  userInfo.setUserInfo({name: dataUser.name, job: dataUser.about, avatar: dataUser.avatar})
+  section.addItemDefault(dataCard)
+  console.log(dataCard)
+})
 
 
 
