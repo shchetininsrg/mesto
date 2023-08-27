@@ -1,8 +1,9 @@
 import Popup from "./Popup";
 export default class PopupWithConfirm extends Popup {
-    constructor(selectorPopup, deleteCardSubmit){
-        super(selectorPopup)
+    constructor(popup, deleteCardSubmit){
+        super(popup)
         this._deleteCardSubmit = deleteCardSubmit
+        this._form = this.popup.querySelector('.popup__form')
     }
 
     setEventListener(){

@@ -9,7 +9,10 @@ import {editProfile, popupEdit, addPopup, popupInputFullname, popupInputDescript
 import {configApi} from '../utils/configApi'
 import Api from '../components/Api'
 import PopupWithConfirm from '../components/PopupWithConfirm'
+
 const api = new Api(configApi)
+
+let userId = ''
 
 const popupWithConfirm = new PopupWithConfirm('#confirmPopup', (item, cardId) => {
   api.deleteCard(cardId)
@@ -23,7 +26,7 @@ popupWithConfirm.setEventListener()
 
 
 const createCard = (item) => { 
-  const card = new Card(item, '#cards_template', handleCardClick, popupWithConfirm.open, (likeElement, cardId) => {
+  const card = new Card(item, userId, '#cards_template', handleCardClick, popupWithConfirm.open, (likeElement, cardId) => {
     if (likeElement.classList.contains('photo-cards__like_active')) {
       api.deleteLike(cardId)
       .then(res => {
@@ -61,9 +64,8 @@ const handleProfileFormSubmit = (data) => {
 }
 
 const handleAddCard = (data) => {
-  Promise.all([api.getUserInfo(), api.createNewCard(data)])
-  .then(([dataUser, dataCard]) => {
-    dataCard.myid = dataUser._id
+  api.createNewCard(data)
+  .then((dataCard) => {
     const card = createCard(dataCard)
     section.addItem(card)
     popupAddCard.close()
@@ -131,10 +133,11 @@ const userInfo = new UserInfo({selectorName:'.profile-info__fullname', selectorJ
 
 Promise.all([api.getUserInfo(), api.getDefaultCard()])
 .then(([dataUser, dataCard]) => {
-  dataCard.forEach(item => item.myid = dataUser._id)
+  userId = dataUser._id
   userInfo.setUserInfo({name: dataUser.name, job: dataUser.about, avatar: dataUser.avatar})
   section.addItemDefault(dataCard.reverse())
 })
+.catch((error) => console.log(error))
 
 
 

@@ -12,9 +12,10 @@ export default class UserInfo {
 
         return userData
     }
-    setUserInfo({name, job , avatar}) {
+    setUserInfo({name, job , avatar, userId}) {
         this._name.textContent = name
         this._job.textContent = job
         this._avatar.src = avatar
+        this._userId = userId
     }
 }

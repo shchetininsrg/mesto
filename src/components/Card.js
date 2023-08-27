@@ -1,8 +1,9 @@
 export default class Card {
-  constructor(cardData, templateElement, handleCardClick, popupWithConfirm, changeLike) {
+  constructor(cardData, userId, templateElement, handleCardClick, popupWithConfirm, changeLike) {
     this._name = cardData.name;
     this._link = cardData.link;
     this._myId = cardData.myid;
+    this._userId = userId;
     this._ownerId = cardData.owner._id;
     this._likes = cardData.likes;
     this._likesLength = cardData.likes.length;
@@ -46,12 +47,12 @@ export default class Card {
   }
 
   _changeVisibleBucket(){
-    this._myId === this._ownerId ? this._bucketElement.style.display = 'block' : this._bucketElement.style.display = 'none';
+    this._userId === this._ownerId ? this._bucketElement.style.display = 'block' : this._bucketElement.style.display = 'none';
   };
 
   _likesStatus(){
     this._likes.forEach(element => {
-      if (element._id === this._myId) {
+      if (element._id === this._userId) {
         this._likeElement.classList.add('photo-cards__like_active');
         return
       }
