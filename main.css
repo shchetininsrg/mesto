@@ -8,11 +8,11 @@
 .content__profile{margin:0 auto 50px}@media screen and (max-width:1041px){.content__profile{margin:0 auto 36px}}
 .profile{display:flex;width:calc(100% - 400px)}@media screen and (max-width:1041px){.profile{flex-direction:column;width:100%}}
 .profile__avatar{border-radius:100%;height:120px;-o-object-fit:cover;object-fit:cover;width:120px}@media screen and (max-width:1041px){.profile__avatar{margin-left:auto;margin-right:auto}}
-.profile-info{display:flex;margin-left:30px;max-width:336px}@media screen and (max-width:1041px){.profile-info{margin-left:65px;max-width:100%}}
+.profile-info{align-items:center;box-sizing:border-box;display:grid;gap:9px 18px;grid-template-columns:minmax(min-content,max-content) minmax(min-content,max-content);margin:0 0 0 30px;padding:0}@media screen and (max-width:1041px){.profile-info{display:flex;flex-wrap:wrap;gap:14px 10px;justify-content:center;margin:0 auto}}
 .profile-info__description{color:#fff;font-size:18px;font-weight:400;line-height:22px;margin:0;max-width:294px;overflow:hidden;padding:0;text-overflow:ellipsis;white-space:nowrap}@media screen and (max-width:1041px){.profile-info__description{font-size:14px;line-height:17px;margin-bottom:33px;margin-left:16px;max-width:100%}}
 .profile-info__edit-btn{align-self:flex-start;background:transparent;background-image:url(af236f6cf67005f1d7aa.svg);border:none;cursor:pointer;height:24px;margin-top:34px;transition:opacity .3s ease-in;width:24px}.profile-info__edit-btn:hover{opacity:.6}@media screen and (max-width:1041px){.profile-info__edit-btn{background-size:cover;height:18px;width:18px}}
 .profile-info__fullname{align-self:center;color:#fff;font-size:42px;font-weight:500;line-height:1.14;margin:0 18px 16px 0;max-width:294px;overflow:hidden;padding:0;text-overflow:ellipsis;white-space:nowrap}@media screen and (max-width:1041px){.profile-info__fullname{font-size:27px;line-height:33px;margin:26px 10px 7px 0;max-width:189px}}
-.profile-info__container{align-self:center}
+.profile-info__container.css{align-self:center}
 .profile__add-btn{align-self:center;background:transparent;background-image:url(13997fdf54b4cb323817.svg);background-repeat:no-repeat;background-size:cover;border:none;cursor:pointer;height:50px;margin-left:auto;-o-object-fit:cover;object-fit:cover;transition:opacity .3s ease-in;width:150px}.profile__add-btn:hover{opacity:.6}@media screen and (max-width:1041px){.profile__add-btn{background-image:url(8e041299935e2fbbe15e.svg);background-size:cover;margin-left:0;width:282px}}
 .photo-cards{display:grid;gap:20px 17px;grid-template-columns:repeat(3,1fr);margin-left:auto;margin-right:auto;max-width:880px}@media screen and (max-width:1279px){.photo-cards{grid-template-columns:repeat(2,1fr)}}@media screen and (max-width:768px){.photo-cards{grid-template-columns:1fr}}
 .photo-cards__img{border-radius:10px 10px 0 0;display:block;height:282px;-o-object-fit:cover;object-fit:cover;width:282px}
@@ -26,10 +26,10 @@
 .footer__copyright{color:#545454;font-size:18px;font-style:normal;font-weight:400;line-height:22px;margin:0;padding:0}@media screen and (max-width:1279px){.footer__copyright{font-size:14px;line-height:17px;margin-left:19px}}
 .page__footer{margin:66px auto 60px}@media screen and (max-width:1279px){.page__footer{margin:48px 0 36px}}
 .popup{align-items:center;background-color:rgba(0,0,0,.5);display:flex;height:100vh;justify-content:center;left:0;opacity:0;position:fixed;top:0;transition:visibility .3s,opacity .3s linear;visibility:hidden;width:100vw}
-.popup__container{background-color:#fff;border-radius:10px;display:flex;flex-direction:column;min-height:330px;min-width:358px;padding-left:36px;padding-right:36px;position:relative}@media screen and (max-width:1279px){.popup__container{min-height:322px;min-width:238px;padding-left:22px;padding-right:22px}}
+.popup__container{background-color:#fff;border-radius:10px;display:flex;flex-direction:column;max-height:330px;min-width:358px;padding-left:36px;padding-right:36px;position:relative}@media screen and (max-width:1279px){.popup__container{max-height:322px;min-width:238px;padding-left:22px;padding-right:22px}}
 .popup__close-btn{background:transparent;background-image:url(039f1f5203f653b4bacd.svg);background-size:cover;border:none;cursor:pointer;height:32px;position:absolute;right:-40px;top:-40px;transition:opacity .3s ease-in;width:32px}.popup__close-btn:hover{opacity:.6}@media screen and (max-width:1279px){.popup__close-btn{height:20px;right:0;width:20px}}
 .popup__input{border:none;border-bottom:1px solid #d2d2d2;font-size:14px;font-weight:400;height:27px;line-height:17px;padding:0;width:100%}
-.popup__save-btn{background:transparent;background-color:#000;border:none;color:#fff;cursor:pointer;font-size:18px;font-weight:400;height:50px;line-height:22px;margin-bottom:36px;margin-top:31px;transition:opacity .3s ease-in;width:100%}.popup__save-btn:hover{opacity:.8}@media screen and (max-width:1279px){.popup__save-btn{font-size:14px;line-height:17px;margin-bottom:20px;margin-top:45px}}
+.popup__save-btn{background:transparent;background-color:#000;border:none;color:#fff;cursor:pointer;font-size:18px;font-weight:400;height:50px;line-height:22px;margin-bottom:36px;transition:opacity .3s ease-in;width:100%}.popup__save-btn:hover{opacity:.8}@media screen and (max-width:1279px){.popup__save-btn{font-size:14px;line-height:17px;margin-bottom:20px;margin-top:45px}}
 .popup__title{font-size:24px;font-weight:900;line-height:29px;margin:34px 0 54px;padding:0}@media screen and (max-width:1279px){.popup__title{font-size:18px;line-height:22px;margin-bottom:75px;margin-top:25px}}
 .popup_open{opacity:1;visibility:visible}
 .popup__img{max-height:75vh;max-width:75vw}
@@ -39,4 +39,8 @@
 .popup__input_error{border-bottom:1px solid red}
 .popup__save-btn_error{background-color:transparent;border:1px solid #000;color:#000;cursor:default;opacity:.2}.popup__save-btn_error:hover{opacity:.2}
 .popup__label{max-width:100%}
+.profile__avatar-container{height:120px;max-width:120px;position:relative}@media screen and (max-width:1041px){.profile__avatar-container{margin-left:auto;margin-right:auto}}
+.profile__figure{align-items:center;background:rgba(0,0,0,.6);border-radius:50%;display:flex;height:100%;justify-content:center;left:0;opacity:0;position:absolute;top:0;transition:opacity .7s;width:100%}.profile__figure:hover{cursor:pointer;opacity:1}
+.profile__icon{background:url(a086f758840ae814ecde.svg) no-repeat 50%;height:22px;width:22px}
+.photo-card__like-count{color:#000;font-size:13px;font-weight:400;margin:0;text-align:center}
 
