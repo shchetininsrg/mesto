@@ -18,6 +18,19 @@ export default class Api {
 		})
 			.then(res => this._checkStateServ(res))
     }
+
+	createNewCard(data) {
+		return fetch(`${this._url}/cards`, {
+			method: 'POST',
+			headers: this._header,
+			body: JSON.stringify({
+				name: data.name,
+				link: data.link
+			})
+		},)
+			.then(res => this._checkStateServ(res))
+	}
+
     getUserInfo() {
 		return fetch(`${this._url}/users/me`, {
 			method: 'GET',
@@ -44,18 +57,6 @@ export default class Api {
 			body: JSON.stringify({
 				name: data.name,
 				about: data.job
-			})
-		},)
-			.then(res => this._checkStateServ(res))
-	}
-
-	createNewCard(data) {
-		return fetch(`${this._url}/cards`, {
-			method: 'POST',
-			headers: this._header,
-			body: JSON.stringify({
-				name: data.name,
-				link: data.link
 			})
 		},)
 			.then(res => this._checkStateServ(res))
