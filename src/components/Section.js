@@ -8,8 +8,10 @@ export default class Section {
       this._container.prepend(item);
     }
   
-    addItemDefault(item) {
-      this._container.append(item)
+    addItemDefault(items) {
+      items.forEach(item => {
+        this._renderer(item)
+      });
     }
   
   }

@@ -26,7 +26,7 @@ export default class Api {
 			.then(res => this._checkStateServ(res))
 	}
 
-	getAvatar(item) {
+	setAvatar(item) {
 		return fetch(`${this._url}/users/me/avatar `, {
 			method: 'PATCH',
 			headers: this._header,
@@ -37,54 +37,51 @@ export default class Api {
 			.then(res => this._checkStateServ(res))
 	}
 
-	getInfoProfile(item) {
+	setInfoUser(data) {
 		return fetch(`${this._url}/users/me`, {
 			method: 'PATCH',
 			headers: this._header,
 			body: JSON.stringify({
-				name: item.name,
-				about: item.about
+				name: data.name,
+				about: data.job
 			})
 		},)
 			.then(res => this._checkStateServ(res))
 	}
 
-	createNewCard(card) {
+	createNewCard(data) {
 		return fetch(`${this._url}/cards`, {
 			method: 'POST',
 			headers: this._header,
 			body: JSON.stringify({
-				name: card.title,
-				link: card.link
+				name: data.name,
+				link: data.link
 			})
 		},)
 			.then(res => this._checkStateServ(res))
 	}
 
-	deleteCard(card_id) {
-		return fetch(`${this._url}/cards/${card_id}`, {
+	deleteCard(cardId) {
+		return fetch(`${this._url}/cards/${cardId}`, {
 			method: 'DELETE',
 			headers: this._header
 		},)
 			.then(res => this._checkStateServ(res))
 	}
 
-	addLike(card_id) {
-		return fetch(`${this._url}/cards/${card_id}/likes `, {
+	addLike(cardId) {
+		return fetch(`${this._url}/cards/${cardId}/likes`, {
 			method: 'PUT',
 			headers: this._header
 		},)
 			.then(res => this._checkStateServ(res))
 	}
 
-	deleteLike(card_id) {
-		return fetch(`${this._url}/cards/${card_id}/likes `, {
+	deleteLike(cardId) {
+		return fetch(`${this._url}/cards/${cardId}/likes`, {
 			method: 'DELETE',
 			headers: this._header
 		},)
             .then(res => this._checkStateServ(res))
-			.then(data => {
-				return data;
-			});
 	}
 }

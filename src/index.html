@@ -37,7 +37,7 @@
                         <h2 class="photo-cards__title"></h2>
                         <div class="photo-card__container-like">
                             <button type="button" class="photo-cards__like"></button>
-                            <p class="photo-card__like-count">1</p>
+                            <p class="photo-card__like-count"></p>
                         </div>
                     </div>
                 </div>
@@ -103,7 +103,8 @@
         <div class="popup__container">
             <button type="button" class="popup__close-btn"></button>
             <h2 class="popup__title">Вы уверены?</h2>
-            <button type="submit" id="addBtn" class="popup__save-btn popup__save-btn_error">Да</button>
+            <form name="deleteCard" class="popup__form" action="" novalidate>
+            <button type="submit" id="delete-button-submit" class="popup__save-btn">Да</button>
             </form>
         </div>
     </div>
